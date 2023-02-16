@@ -4,13 +4,13 @@ library(tidyverse)
 
 simulated_data <-
   tibble(
-    year = sample(1918:1919, 48, replace = TRUE),
-    publication = runif(
-      n = 48,
+     mortality = runif(
+      n = 30,
       min = 0,
-      max = 6000
+      max = 1.6
     ),
-    month = rep(1:12, each = 4),
-    region = rep(c("Northea Souths","Midwest","South","West"), each =12 )
+    gender = rep(c("female","male"), each = 15),
+    age_group = rep(c("0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74"), each =2 )
   )
 head(simulated_data)
+tail(simulated_data)
