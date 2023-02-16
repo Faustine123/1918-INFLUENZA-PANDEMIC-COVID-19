@@ -30,7 +30,40 @@ library(haven)
 library(readxl)
 library(ggplot2)
 raw_data_fig1<-read_dta(here::here("Input/Data/LOC_Newspapers_Sep18_Dec19.dta"))
-raw_data_fig2<-read_dta(here::here("Input/Data/Life_Expectancy.dta"))
 
+```
+
+```{r}
+
+cleaned_figure1_data <-
+  raw_data_fig1 |>
+  # Select only certain columns
+  select(
+   flu_sep1_1918_dec31_1919,
+   year,
+   month,
+   region
+  )
+
+### Clean data ###
+# Rename column
+cleaned_figure1_data <-
+ cleaned_figure1_data |>
+  rename(
+    influence = flu_sep1_1918_dec31_1919
+  )
+
+#group by year, month, and region
+cleaned_figure1_data<- cleaned_figure1_data %>%
+  group_by(year, month, region) %>%
+  summarize(total_influence = sum(influence)) %>%
+  ungroup()
+
+#create a new column to store date in month.year format
+cleaned_figure1_data$date_label <- format(as.Date(paste(cleaned_figure1_data$year, cleaned_figure1_data$month, "01", sep = "-")), "%b.%Y")
+cleaned_figure1_data$date_label <- factor(cleaned_figure1_data$date_label, levels = unique(cleaned_figure1_data$date_label))
+
+#store cleaned data for figure 1
+write.csv(cleaned_figure1_data, file = here::here("Outputs/Data/cleaned_figure1_data.csv"), row.names = FALSE)
 ```
 
