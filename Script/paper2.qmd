@@ -64,6 +64,13 @@ cleaned_figure1_data$date_label <- format(as.Date(paste(cleaned_figure1_data$yea
 cleaned_figure1_data$date_label <- factor(cleaned_figure1_data$date_label, levels = unique(cleaned_figure1_data$date_label))
 
 #store cleaned data for figure 1
-write.csv(cleaned_figure1_data, file = here::here("Outputs/Data/cleaned_figure1_data.csv"), row.names = FALSE)
+write.csv(cleaned_figure1_data, file = here::here("Output/Data/cleaned_figure1_data.csv"), row.names = FALSE)
+
+### Draw graph ###
+ggplot(cleaned_figure1_data, aes(x = date_label, y = total_influence, group = region, color = region)) +
+  geom_line() +
+  scale_x_discrete(labels = c("Sep.1918","", "Nov.1918","", "Jan.1919","","Mar.1919","", "May.1919","","Jul.1919","","Sep.1919","","Nov.1919","")) +
+  labs(x = "Publication Month", y = "Articles mentioning influenza")
+
 ```
 
