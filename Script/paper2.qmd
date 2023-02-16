@@ -30,7 +30,7 @@ library(haven)
 library(readxl)
 library(ggplot2)
 raw_data_fig1<-read_dta(here::here("Input/Data/LOC_Newspapers_Sep18_Dec19.dta"))
-
+raw_data_fig2<-read_dta(here::here("Input/Data/Life_Expectancy.dta"))
 ```
 
 ```{r}
@@ -73,4 +73,5 @@ ggplot(cleaned_figure1_data, aes(x = date_label, y = total_influence, group = re
   labs(x = "Publication Month", y = "Articles mentioning influenza")
 
 ```
+
 
