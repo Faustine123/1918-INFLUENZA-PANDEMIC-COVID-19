@@ -34,7 +34,7 @@ raw_data_fig2<-read_dta(here::here("Input/Data/Life_Expectancy.dta"))
 ```
 
 ```{r}
-
+########Figure #########
 cleaned_figure1_data <-
   raw_data_fig1 |>
   # Select only certain columns
@@ -74,4 +74,72 @@ ggplot(cleaned_figure1_data, aes(x = date_label, y = total_influence, group = re
 
 ```
 
+```{r}
+######### Figure 2 ############
+### Clean data ###
+# Select only certain columns
+cleaned_figure2_data <-
+  raw_data_fig2 |>
+  select(
+   entity,
+   year,
+   lifeexpectancyyears
+  )
+cleaned_figure2_data <- cleaned_figure2_data %>%
+  filter(year >= 1900, year <= 1940)
+
+#calculate the mean of life expectanacy years
+calculate_mean<- cleaned_figure2_data %>%
+  group_by(year) %>%
+  summarize(average_life_expectancy = mean(lifeexpectancyyears)) %>%
+  ungroup()
+
+#add lines
+add_number <- calculate_mean %>% 
+  select(year) %>% 
+  n_distinct()
+added_data <- data.frame(
+  year = rep(1900:1940, each = 1),
+  entity = rep("average", add_number),
+  lifeexpectancyyears = numeric(add_number)
+)
+
+#combine table together
+final_figure2_data <- rbind(cleaned_figure2_data, added_data)
+
+#replaced the average life expectancy years
+final_figure2_data$lifeexpectancyyears[
+  final_figure2_data$entity == "average"] <- 
+  calculate_mean$average_life_expectancy[
+      calculate_mean$year == final_figure2_data$year[
+        final_figure2_data$entity == "average"]]
+
+#store cleaned data for figure 2
+write.csv(final_figure2_data, file = here::here("Output/Data/cleaned_figure2_data.csv"), row.names = FALSE)
+
+###Draw graph###
+new_dataset <- 
+  final_figure2_data %>% 
+  filter(entity %in% c("Italy","Denmark","average"))
+
+ggplot(final_figure2_data, aes(
+  x = year, 
+  y = lifeexpectancyyears, 
+  color = entity
+  )) +
+  geom_line(alpha = 0.2) +
+  geom_line(data = new_dataset, aes(
+  x = year, 
+  y = lifeexpectancyyears, 
+  color = entity
+  )) +
+  theme_minimal() +
+  labs(
+    x = "Year",
+    y = "Period Life Expectancy Years",
+    color = "Entity",
+    caption = "Data source: World Bank."
+  )
+  
+```
 
