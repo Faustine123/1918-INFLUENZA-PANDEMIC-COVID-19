@@ -1,3 +1,5 @@
+library(tidyverse)
+
 ########Figure 1########
 #test for mortality_rate
 cleaned_figure1_data$mortality_rate |> min() >= 0
@@ -15,7 +17,7 @@ cleaned_figure2_data$year |> min() == 1918
 cleaned_figure2_data$year |> max() == 1919
 
 #test for region
-cleaned_figure2_data$region |> 
+cleaned_figure2_data$region |>
   unique() == c(
     "Northe Souths",
     "Misdwest",
@@ -33,7 +35,7 @@ cleaned_figure3_data$lifeexpectancyyears |> min() >=25
 cleaned_figure3_data$lifeexpectancyyears |> max() <=75
 
 
-########Figure 4#######
+########Figure 4########
 #test for adjusted price
 cleaned_figure4_data$adjusted_price |> min() >= 75
 cleaned_figure4_data$adjusted_price |> max() <= 81
