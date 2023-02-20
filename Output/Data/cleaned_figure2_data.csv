@@ -1,65 +1,23 @@
-"year","month","region","total_influence","date_label"
-1918,9,"Northeast",473,"Sep.1918"
-1918,9,"Midwest",462,"Sep.1918"
-1918,9,"South",529,"Sep.1918"
-1918,9,"West",271,"Sep.1918"
-1918,10,"Northeast",2553,"Oct.1918"
-1918,10,"Midwest",4041,"Oct.1918"
-1918,10,"South",5488,"Oct.1918"
-1918,10,"West",2261,"Oct.1918"
-1918,11,"Northeast",1708,"Nov.1918"
-1918,11,"Midwest",3890,"Nov.1918"
-1918,11,"South",4235,"Nov.1918"
-1918,11,"West",2626,"Nov.1918"
-1918,12,"Northeast",1419,"Dec.1918"
-1918,12,"Midwest",3517,"Dec.1918"
-1918,12,"South",3492,"Dec.1918"
-1918,12,"West",2438,"Dec.1918"
-1919,1,"Northeast",1389,"Jan.1919"
-1919,1,"Midwest",2573,"Jan.1919"
-1919,1,"South",3253,"Jan.1919"
-1919,1,"West",2371,"Jan.1919"
-1919,2,"Northeast",887,"Feb.1919"
-1919,2,"Midwest",1593,"Feb.1919"
-1919,2,"South",2396,"Feb.1919"
-1919,2,"West",1265,"Feb.1919"
-1919,3,"Northeast",821,"Mar.1919"
-1919,3,"Midwest",1473,"Mar.1919"
-1919,3,"South",1944,"Mar.1919"
-1919,3,"West",1160,"Mar.1919"
-1919,4,"Northeast",587,"Apr.1919"
-1919,4,"Midwest",1044,"Apr.1919"
-1919,4,"South",1222,"Apr.1919"
-1919,4,"West",968,"Apr.1919"
-1919,5,"Northeast",336,"May.1919"
-1919,5,"Midwest",578,"May.1919"
-1919,5,"South",766,"May.1919"
-1919,5,"West",543,"May.1919"
-1919,6,"Northeast",194,"Jun.1919"
-1919,6,"Midwest",353,"Jun.1919"
-1919,6,"South",575,"Jun.1919"
-1919,6,"West",355,"Jun.1919"
-1919,7,"Northeast",183,"Jul.1919"
-1919,7,"Midwest",276,"Jul.1919"
-1919,7,"South",461,"Jul.1919"
-1919,7,"West",316,"Jul.1919"
-1919,8,"Northeast",136,"Aug.1919"
-1919,8,"Midwest",217,"Aug.1919"
-1919,8,"South",408,"Aug.1919"
-1919,8,"West",240,"Aug.1919"
-1919,9,"Northeast",237,"Sep.1919"
-1919,9,"Midwest",399,"Sep.1919"
-1919,9,"South",749,"Sep.1919"
-1919,9,"West",301,"Sep.1919"
-1919,10,"Northeast",396,"Oct.1919"
-1919,10,"Midwest",563,"Oct.1919"
-1919,10,"South",1100,"Oct.1919"
-1919,10,"West",451,"Oct.1919"
-1919,11,"Northeast",353,"Nov.1919"
-1919,11,"Midwest",562,"Nov.1919"
-1919,11,"South",1153,"Nov.1919"
-1919,11,"West",444,"Nov.1919"
-1919,12,"Northeast",313,"Dec.1919"
-1919,12,"Midwest",464,"Dec.1919"
-1919,12,"South",830,"Dec.1919"
-1919,12,"West",388,"Dec.1919"
+"Group","State","gender","Age.Group","COVID.19.Deaths"
+"By Total","United States","Male","Under 1 year",238
+"By Total","United States","Male","1-4 years",130
+"By Total","United States","Male","5-14 years",231
+"By Total","United States","Male","15-24 years",1737
+"By Total","United States","Male","25-34 years",7407
+"By Total","United States","Male","35-44 years",18263
+"By Total","United States","Male","45-54 years",44756
+"By Total","United States","Male","55-64 years",96105
+"By Total","United States","Male","65-74 years",148105
+"By Total","United States","Male","75-84 years",161657
+"By Total","United States","Male","85 years and over",131038
+"By Total","United States","Female","Under 1 year",192
+"By Total","United States","Female","1-4 years",110
+"By Total","United States","Female","5-14 years",222
+"By Total","United States","Female","15-24 years",1191
+"By Total","United States","Female","25-34 years",4674
+"By Total","United States","Female","35-44 years",11255
+"By Total","United States","Female","45-54 years",25502
+"By Total","United States","Female","55-64 years",60469
+"By Total","United States","Female","65-74 years",101782
+"By Total","United States","Female","75-84 years",126977
+"By Total","United States","Female","85 years and over",166321

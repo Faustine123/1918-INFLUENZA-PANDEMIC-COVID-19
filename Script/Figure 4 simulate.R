@@ -2,16 +2,18 @@ library(janitor)
 library(tibble)
 library(tidyverse)
 
-simulated_data <-
+simulated_data_4 <-
   tibble(
-    price = runif(
-      n = 240,
-      min = 80,
-      max = 200
-    ),
-    stock_market = rep(c("US","London"), each = 120),
-    year = sample(1915:1924, 240, replace = TRUE),
-    month = rep(1:12, each =20)
-  )
-head(simulated_data)
-tail(simulated_data)
+    year = rep(seq(from = 1900, to = 1940, by = 1), 3),
+    entity = c(
+      rep("Average",41),
+      rep("Denmark",41),
+      rep("Italy",41)),
+    life_expectancy_years = runif(
+      n = 123,
+      min = 25,
+      max = 75
+    )
+)
+
+head(simulated_data_4)

@@ -2,14 +2,22 @@ library(janitor)
 library(tibble)
 library(tidyverse)
 
-simulated_data <-
-  tibble(
-    year = sample(1900:1940, 120, replace = TRUE),
-    life_expectancy_years = runif(
-      n = 120,
-      min = 25,
-      max = 75
-    ),
-    entity = rep(c("Average","Denmark","Italy"), each =40 )
-  )
-head(simulated_data)
+month_year <- seq(as.Date("1918-09-01"), as.Date("1919-11-01"), by = "month")
+
+# format the dates as "month.year"
+date <- format(month_year, "%b.%Y")
+
+simulated_data_3 <- tibble(
+  rep(date,4),
+  region = c(
+    rep("Notheast", 15),
+    rep("Midwest", 15),
+    rep("South", 15),
+    rep("West", 15)
+  ),
+  death = runif(
+    n = 60,
+    min = 0,
+    max = 200000))
+
+head(simulated_data_3)

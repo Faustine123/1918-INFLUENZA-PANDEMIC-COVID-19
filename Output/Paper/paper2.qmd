@@ -1,4 +1,3 @@
-
 ---
 title: "1918 Pandemic and COVID-19"
 author: 
@@ -12,13 +11,14 @@ output:
   bookdown::pdf_document2
 toc: FALSE
 bibliography: references.bib
----
 
+---
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
+# loading in relevant libraries
 library(tidyverse)
 library(palmerpenguins)
 library(dplyr)
@@ -29,11 +29,14 @@ library(lubridate)
 library(haven)
 library(readxl)
 library(ggplot2)
-raw_data_fig1<-read_excel(here::here("Input/Data/Murray_2006_Estimates.xlsx"))
-raw_data_fig2<-read_dta(here::here("Input/Data/LOC_Newspapers_Sep18_Dec19.dta"))
-raw_data_fig3<-read_dta(here::here("Input/Data/Life_Expectancy.dta"))
-raw_data_fig4_1<-read.table(here::here("output/data/cleaned_figure4_data/m110112.txt"))
-raw_data_fig4_2<-read.table(here::here("output/data/cleaned_figure4_data/m11009b.dat2.txt"))
+
+### Input data ###
+raw_data_fig1<-read_excel(here::here("Input/Data/fig1_raw_data.xlsx"))
+raw_data_fig2<-read.csv(here::here("Input/Data/fig2_raw_data.csv"))
+raw_data_fig3<-read_dta(here::here("Input/Data/fig3_raw_data.dta"))
+raw_data_fig4<-read_dta(here::here("Input/Data/fig4_raw_data.dta"))
+raw_data_fig5_1<-read.table(here::here("output/data/processed_figure4_data/m110112.txt"))
+raw_data_fig5_2<-read.table(here::here("output/data/processed_figure4_data/m11009b.dat2.txt"))
 
 ```
 
@@ -44,6 +47,7 @@ raw_data_fig4_2<-read.table(here::here("output/data/cleaned_figure4_data/m11009b
 #| echo: false
 #| fig-cap: "Median Excess Mortality Rate by Age and Sex in 13 Countries""
 #| label: figure1_mortality
+
 
 ### Data clean ###
 process_data_fig1 <- raw_data_fig1 %>% 
@@ -74,22 +78,93 @@ ggplot(cleaned_figure1_data, aes(
   color = gender)) +
   geom_line()+
   scale_x_discrete(limits = age_cat_order)+
+  #label settings
   theme(axis.text.x = element_text(angle = 70, hjust = 1))+
   labs(y = "Excess Mortality Rate During Pandemic \n(Deaths per 100 persons)", 
        x = "Age Group")
 ```
 
 ```{r}
-###########Figure 2 ##########
+#############Figure 2 ###########
 #| message: false
 #| warning: false
 #| echo: false
-#| fig-cap: "Regional Patterns of Influenza Newspaper Coverage"
-#| label: figure2
+#| fig-cap: "Covid-19 Death by Age in United States""
+#| label: figure2_CoivdDeath
+
 
 ### Clean data ###
 cleaned_figure2_data <-
   raw_data_fig2 |>
+  # Select only certain columns
+  select(
+   Group,
+   State,
+   Sex,
+   Age.Group,
+   COVID.19.Deaths
+  )
+
+# Remove the total and select the united states
+cleaned_figure2_data <- 
+  cleaned_figure2_data %>%
+  filter(Group == "By Total")|>
+  filter(Sex != "All Sexes")|>
+  filter(Age.Group != "All Ages")|>
+  filter(State == "United States")
+  
+# Remove the wrong age group
+cleaned_figure2_data <- 
+  cleaned_figure2_data %>%
+  filter(Age.Group != "0-17 years")|>
+  filter(Age.Group != "18-29 years")|>
+  filter(Age.Group != "30-39 years")|>
+  filter(Age.Group != "40-49 years")|>
+  filter(Age.Group != "50-64 years")
+
+# Make sure the order of the age group is the order we wanted
+age_reorder <- c("Under 1 year", "1-4 years", "5-14 years", "15-24 years", "25-34 years", "35-44 years", "45-54 years", "55-64 years", "65-74 years", "75-84 years", "85 years and over")
+cleaned_figure2_data$Age.Group <- 
+  factor(cleaned_figure2_data$Age.Group, 
+         levels = age_reorder)
+
+#rename the column to keep consistent with figure 1
+cleaned_figure2_data <-
+ cleaned_figure2_data |>
+  rename(
+    gender = Sex
+  )
+
+# Store cleaned data
+write.csv(cleaned_figure2_data, file = here::here("Output/Data/cleaned_figure2_data.csv"), row.names = FALSE)
+
+
+### Draw graph ###
+ggplot(cleaned_figure2_data, aes(
+  x = Age.Group,
+  y = COVID.19.Deaths,
+  group = gender, 
+  color = gender)) +
+  geom_line() +
+  #label settings
+  theme(axis.text.x = element_text(angle = 70, hjust = 1))+
+  labs(y = "Covid-19 Death", 
+       x = "Age Group")
+
+```
+
+```{r}
+#############Figure 3 ###########
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-cap: "Regional Patterns of Influenza Newspaper Coverage"
+#| label: figure3
+
+
+### Clean data ###
+cleaned_figure3_data <-
+  raw_data_fig3 |>
   # Select only certain columns
   select(
    flu_sep1_1918_dec31_1919,
@@ -99,24 +174,24 @@ cleaned_figure2_data <-
   )
 
 # Rename column
-cleaned_figure2_data <-
- cleaned_figure2_data |>
+cleaned_figure3_data <-
+ cleaned_figure3_data |>
   rename(
     influence = flu_sep1_1918_dec31_1919
   )
 
 # Group by year, month, and region
-cleaned_figure2_data<- cleaned_figure2_data %>%
+cleaned_figure3_data<- cleaned_figure3_data %>%
   group_by(year, month, region) %>%
   summarize(total_influence = sum(influence)) %>%
   ungroup()
 
 # Create a new column to store date in month.year format
-cleaned_figure2_data$date_label <- format(as.Date(paste(cleaned_figure2_data$year, cleaned_figure2_data$month, "01", sep = "-")), "%b.%Y")
-cleaned_figure2_data$date_label <- factor(cleaned_figure2_data$date_label, levels = unique(cleaned_figure2_data$date_label))
+cleaned_figure3_data$date_label <- format(as.Date(paste(cleaned_figure3_data$year, cleaned_figure3_data$month, "01", sep = "-")), "%b.%Y")
+cleaned_figure3_data$date_label <- factor(cleaned_figure3_data$date_label, levels = unique(cleaned_figure3_data$date_label))
 
 # Change the region name
-cleaned_figure2_data <- cleaned_figure2_data %>%
+cleaned_figure3_data <- cleaned_figure3_data %>%
   mutate(region = case_when(
     region == 1 ~ "Northeast",
     region == 2 ~ "Midwest",
@@ -124,43 +199,47 @@ cleaned_figure2_data <- cleaned_figure2_data %>%
     region == 4 ~ "West"
   ))
 
-# Store cleaned data for figure 2
-write.csv(cleaned_figure2_data, file = here::here("Output/Data/cleaned_figure2_data.csv"), row.names = FALSE)
+# Store cleaned data for figure 3
+write.csv(cleaned_figure3_data, file = here::here("Output/Data/cleaned_figure3_data.csv"), row.names = FALSE)
+
 
 ### Draw graph ###
-ggplot(cleaned_figure2_data, aes(x = date_label, y = total_influence, group = region, color = region)) +
+ggplot(cleaned_figure3_data, aes(x = date_label, y = total_influence, group = region, color = region)) +
   geom_line() +
-  scale_x_discrete(labels = c("Sep.\n2018","", "Nov.\n1918","", "Jan.\n1919","","Mar.\n 1919","", "May.\n 1919","","Jul.\n1919","","Sep.\n1919","","Nov.\n1919","")) +
+  scale_x_discrete(labels = c("Sep.\n1918","", "Nov.\n1918","", "Jan.\n1919","","Mar.\n 1919","", "May.\n 1919","","Jul.\n1919","","Sep.\n1919","","Nov.\n1919","")) +
   scale_y_continuous(breaks = c(0, 1200, 2400, 3600, 4800, 6000))+
   labs(x = "Publication Month", y = "Articles mentioning influenza")
   
 ```
 
 ```{r}
+#############Figure 4 ###########
 #| message: false
 #| warning: false
 #| echo: false
 #| fig-cap: "Period Life Expectancy by Year in 14 Countries"
-#| label: figure3
+#| label: figure4
+
+
 ### Clean data ###
-# Select only certain columns
-cleaned_figure3_data <-
-  raw_data_fig3 |>
+# select only certain columns
+cleaned_figure4_data <-
+  raw_data_fig4 |>
   select(
    entity,
    year,
    lifeexpectancyyears
   )
-cleaned_figure3_data <- cleaned_figure3_data %>%
+cleaned_figure4_data <- cleaned_figure4_data %>%
   filter(year >= 1900, year <= 1940)
 
-#calculate the mean of life expectanacy years
-calculate_mean<- cleaned_figure3_data %>%
+# calculate the mean of life expectanacy years
+calculate_mean<- cleaned_figure4_data %>%
   group_by(year) %>%
   summarize(average_life_expectancy = mean(lifeexpectancyyears)) %>%
   ungroup()
 
-#add lines
+# add lines for calculating average
 add_number <- calculate_mean %>% 
   select(year) %>% 
   n_distinct()
@@ -171,65 +250,74 @@ added_data <- data.frame(
 )
 
 #combine table together
-final_figure3_data <- rbind(cleaned_figure3_data, added_data)
+final_figure4_data <- rbind(cleaned_figure4_data, added_data)
 
 #replaced the average life expectancy years
-final_figure3_data$lifeexpectancyyears[
-  final_figure3_data$entity == "average"] <- 
+final_figure4_data$lifeexpectancyyears[
+  final_figure4_data$entity == "average"] <- 
   calculate_mean$average_life_expectancy[
-      calculate_mean$year == final_figure3_data$year[
-        final_figure3_data$entity == "average"]]
+      calculate_mean$year == final_figure4_data$year[
+        final_figure4_data$entity == "average"]]
 
-#store cleaned data for figure 3
-write.csv(final_figure3_data, file = here::here("Output/Data/cleaned_figure3_data.csv"), row.names = FALSE)
+#store cleaned data for figure 4
+write.csv(final_figure4_data, file = here::here("Output/Data/cleaned_figure4_data.csv"), row.names = FALSE)
+
 
 ###Draw graph###
+#create a new data set for three highlight lines
 new_dataset <- 
-  final_figure3_data %>% 
+  final_figure4_data %>% 
   filter(entity %in% c("Italy","Denmark","average"))
 
-ggplot(final_figure3_data, aes(
+ggplot(final_figure4_data, aes(
+  #make a transparent graph as background
   x = year, 
   y = lifeexpectancyyears, 
   color = entity
   )) +
   geom_line(alpha = 0.2) +
+  #make three highlight lines on this graph
   geom_line(data = new_dataset, aes(
   x = year, 
   y = lifeexpectancyyears, 
   color = entity
   )) +
   theme_minimal() +
+  #highlight the lines we need
+  scale_color_manual(values = c("average" = "red", "Denmark" = "green", "Italy" = "blue"))+
   labs(
     x = "Year",
-    y = "Period Life Expectancy Years"
+    y = "Period Life Expectancy (Years)"
   )
-  
 ```
 
 ```{r}
-#########Figure 4###########
+#########Figure 5###########
 #| message: false
 #| warning: false
 #| echo: false
 #| fig-cap: "Stock Market Indices"
-#| label: figure4
-# add one column to shows the stock market
-raw_data_fig4_1$stock_market <- "London Stock Exchange"
-raw_data_fig4_2$stock_market <- "U.S., Dow−Jones"
+#| label: figure5
+
+
+### Raw data preparation ###
+# add one column to show the stock market
+raw_data_fig5_1$stock_market <- "London Stock Exchange"
+raw_data_fig5_2$stock_market <- "U.S., Dow−Jones"
 
 # combine two txt files together
-figure4_data <- rbind(raw_data_fig4_1, raw_data_fig4_2)
+figure5_data <- rbind(raw_data_fig5_1, raw_data_fig5_2)
 
 # rename the column
-colnames(figure4_data) <- c("year", "month", "price","stock_market")
+colnames(figure5_data) <- c("year", "month", "price","stock_market")
 
 # rewrite the data
-figure4_data$month_year <- paste(month.abb[figure4_data$month], figure4_data$year, sep=".")
+figure5_data$month_year <- paste(month.abb[figure5_data$month], figure5_data$year, sep=".")
 
-# select what we want
-cleaned_figure4_data <- figure4_data %>%
+# set year range from 1915 to 1924
+cleaned_figure5_data <- figure5_data %>%
   filter(between(month_year, "Jan.1915", "Jan.1924")) %>%
+  # select what we want
   select(
     price,
     stock_market,
@@ -237,12 +325,12 @@ cleaned_figure4_data <- figure4_data %>%
   )
 
 # calculate adjusted index
-index1 <- cleaned_figure4_data[
-  cleaned_figure4_data$stock_market == "London Stock Exchange" & cleaned_figure4_data$month_year == "Jan.1915", 
+index1 <- cleaned_figure5_data[
+  cleaned_figure5_data$stock_market == "London Stock Exchange" & cleaned_figure5_data$month_year == "Jan.1915",
   "price"
 ]
-index2 <- cleaned_figure4_data[
-  cleaned_figure4_data$stock_market == "U.S., Dow−Jones" & cleaned_figure4_data$month_year == "Jan.1915", 
+index2 <- cleaned_figure5_data[
+  cleaned_figure5_data$stock_market == "U.S., Dow−Jones" & cleaned_figure5_data$month_year == "Jan.1915", 
   "price"
 ]
 index1 <- as.numeric(index1)
@@ -253,23 +341,24 @@ index_london
 index_us
 
 # convert the column to numeric
-cleaned_figure4_data$price <- as.numeric(cleaned_figure4_data$price)
+cleaned_figure5_data$price <- as.numeric(cleaned_figure5_data$price)
 
 # adjusted price
-cleaned_figure4_data$adjusted_price <- ifelse(
-  cleaned_figure4_data$stock_market == "London Stock Exchange",
-  cleaned_figure4_data$price * index_london,
-  ifelse(cleaned_figure4_data$stock_market == "U.S., Dow−Jones",
-         cleaned_figure4_data$price * index_us,
-         cleaned_figure4_data$price))
+cleaned_figure5_data$adjusted_price <- ifelse(
+  cleaned_figure5_data$stock_market == "London Stock Exchange",
+  cleaned_figure5_data$price * index_london,
+  ifelse(cleaned_figure5_data$stock_market == "U.S., Dow−Jones",
+         cleaned_figure5_data$price * index_us,
+         cleaned_figure5_data$price))
 
-#store cleaned data for figure 4
-write.csv(cleaned_figure4_data, file = here::here("Output/Data/cleaned_figure4_data.csv"), row.names = FALSE)
+#store cleaned data for figure 5
+write.csv(cleaned_figure5_data, file = here::here("Output/Data/cleaned_figure5_data.csv"), row.names = FALSE)
+
 
 ### Draw graph ###
-ggplot(cleaned_figure4_data, aes(x = month_year, y = adjusted_price, group = stock_market, color = stock_market)) +
+ggplot(cleaned_figure5_data, aes(x = month_year, y = adjusted_price, group = stock_market, color = stock_market)) +
   geom_line() +  
-  scale_x_discrete(labels = c("Jan.\n1915", "Jan.\n1916", "Jan.\n1917", "Jan.\n1918", "Jan.\n1919", "Jan.\n1920","Jan.\n1921","Jan.\n1922","Jan.\n1923","Jan.\n1924"))
+  #label settings
+  scale_x_discrete(labels = c("Jan.\n1915", "Jan.\n1916", "Jan.\n1917", "Jan.\n1918", "Jan.\n1919", "Jan.\n1920","Jan.\n1921","Jan.\n1922","Jan.\n1923","Jan.\n1924"))+
   labs(x = "Month", y = "Price(Jan.1915=100)")
 ```
-
