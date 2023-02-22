@@ -39,7 +39,7 @@ Our paper will examine different areas of the original paper, and we will be usi
 4) Stock market indices data is from NBER Macrohistory database.
 
 ### 2.2 Methodology
-This analysis will be performed in R [@R], using the dplyr [@dplyr], readxl [@readxl], palmerpenguins [@palmer], tidyr [@tidyr], data.table [@table], lubridate [@lube], haven [@haven], and tidyverse [@tidy] packages. All figures in the report are generated using ggplot2 [@ggplot].
+This analysis will be performed in R [@R], using the dplyr [@dplyr], readxl [@readxl], tidyr [@tidyr], data.table [@table], lubridate [@lube], haven [@haven], and tidyverse [@tidy] packages. All figures in the report are generated using ggplot2 [@ggplot].
 
 The collection method of our sources varies. For #2, #3, #4 mentioned in the sources section above, our team believes that they are relatively impartial and objective. For source #1, Murray et. al compiled all countries with high-quality vital registration data for the 1918-20 pandemic and used these data to calculate excess mortality. This might cause certain biases and make the data inaccurate when applying it globally. For example, proper data collection just began in 1918, and only countries that have the resources to properly record the data are chosen. It is reasonable to argue that they are already developed nations, and only including them means that the data is not representing other affected developing nations at the time.    
 
@@ -49,7 +49,6 @@ knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 # loading in relevant libraries
 library(tidyverse)
-library(palmerpenguins)
 library(dplyr)
 library(tidyr)
 library(readxl)
