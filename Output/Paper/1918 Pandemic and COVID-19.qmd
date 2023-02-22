@@ -4,7 +4,7 @@ author:
   - Myra Li
   - Randall Ni
   - Faustine Fan
-thanks: "Code and data are available at: https://github.com/Faustine123/1918-INFLUENZA-PANDEMIC-COVID-19.git"
+thanks: "Code and data are available at: https://github.com/Faustine123/1918-INFLUENZA-PANDEMIC-COVID-19.git The orginial paper can be reached out at https://www.aeaweb.org/articles?id=10.1257/jel.20201641"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "A"
 output:
