@@ -1,3 +1,9 @@
+#### Preamble ####
+# Purpose: Data cleaning for figure 2 (Covid-19 Death by Age in United States) raw data
+# Author: Randall Ni, Myra Li, Faustine Fan
+# Data: 16 February 2023
+# Contact: randall.ni@mail.utoronto.ca/myra.li@mail.utoronto.ca/yx.fan@mail.utoronto.ca
+
 #############Figure 2 ###########
 # Loading in relevant libraries
 library(tidyverse)

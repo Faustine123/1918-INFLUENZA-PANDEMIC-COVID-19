@@ -1,3 +1,9 @@
+#### Preamble ####
+# Purpose: Data cleaning for figure 5 (Stock Market Indices by year in London and U.S.)
+# Author: Randall Ni, Myra Li, Faustine Fan
+# Data: 16 February 2023
+# Contact: randall.ni@mail.utoronto.ca/myra.li@mail.utoronto.ca/yx.fan@mail.utoronto.ca
+
 #########Figure 5###########
 # Loading in relevant libraries
 library(tidyverse)

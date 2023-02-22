@@ -2,7 +2,7 @@
 # Purpose: Simulates the figure 1 (Median Excess Mortality Rate by Age and Sex in 13 Countries) raw data
 # Author: Randall Ni, Myra Li, Faustine Fan
 # Data: 22 February 2023
-# Contact: myra.li@mail.utoronto.ca/yx.fan@mail.utoronto.ca
+# Contact: randall.ni@mail.utoronto.ca/myra.li@mail.utoronto.ca/yx.fan@mail.utoronto.ca
 
 library(janitor)
 library(tibble)

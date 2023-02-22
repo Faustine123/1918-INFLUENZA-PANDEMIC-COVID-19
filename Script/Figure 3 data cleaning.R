@@ -1,3 +1,8 @@
+#### Preamble ####
+# Purpose: Data cleaning for figure 3 (Regional Patterns of Influenza Newspaper Coverage) raw data
+# Author: Randall Ni, Myra Li, Faustine Fan
+# Data: 16 February 2023
+# Contact: randall.ni@mail.utoronto.ca/myra.li@mail.utoronto.ca/yx.fan@mail.utoronto.ca
 
 #############Figure 3 ###########
 # Loading in relevant libraries
