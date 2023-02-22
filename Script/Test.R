@@ -1,3 +1,9 @@
+#### Preamble ####
+# Purpose: Test all cleaned data
+# Author: Randall Ni, Myra Li, Faustine Fan
+# Data: 22 February 2023
+# Contact: myra.li@mail.utoronto.ca/yx.fan@mail.utoronto.ca
+
 library(tidyverse)
 
 ########Input data ########
