@@ -7,7 +7,7 @@ abstract: "The Covid-19 pandemic has continued for almost four years now. It has
 format: pdf
 documentclass: article
 geometry: margin = 1in 
-#bibliography: references.bib
+bibliography: references.bib
 ---
 ## 1. Introduction
 We are still amidst the COVID-19 pandemic, and it has continued to wreak havoc on a global scale. The unpreparedness of governments' healthcare systems and many nation's less than competent leadership all contributed to the rapid spread of this disease. Due to COVID-19 virus strand's unique biological similarity to the H1N1 virus that caused the 1918 Influenza (Spanish Flu), many scholars were trying to use the data recorded back then to predict possible futures for the coronavirus disease. Furthermore, they were also examining the past data sets in order to provide guidance on possible future policies. Beach et. al's paper, "The 1918 Influenza Pandemic and Its Lessons for COVID-19" showcases various data sets for the old Influenza and examines the similarity between them and COVID-19 data. They have touched on many aspects of the influenza, such as mortality, fertility, media coverage, and economic growth [@beach]. Due to the paper's relatively outdated publication, our team has determined that many of the authors' opinions about COVID-19 are not sufficient, their influenza graphs are relatively useless, and other more recent articles should be considered in order to determine the best course of action for governments around the world.
