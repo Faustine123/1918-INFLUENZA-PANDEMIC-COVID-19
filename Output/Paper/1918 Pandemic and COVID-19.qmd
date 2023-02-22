@@ -7,7 +7,7 @@ abstract: "The Covid-19 pandemic has continued for almost four years now. It has
 format: pdf
 documentclass: article
 geometry: margin = 1in 
-bibliography: references.bib
+#bibliography: references.bib
 ---
 
 ## 1. Introduction
@@ -99,19 +99,28 @@ age_cat_order <- c("0 to 4", "5 to 9", "10 to 14", "15 to 19", "20 to 24", "25 t
 cleaned_figure1_data$age_cat <- 
   factor(cleaned_figure1_data$age_cat, 
          levels = age_cat_order)
+# Rename the column
+cleaned_figure1_data <-
+ cleaned_figure1_data |>
+  rename(
+    Gender = gender
+  )
+# Replace "female" with "Female" and "male" with "Male"
+cleaned_figure1_data$Gender <- 
+  ifelse(cleaned_figure1_data$Gender == "female", "Female", "Male")
 # Store cleaned data
 write.csv(cleaned_figure1_data, file = here::here("Output/Data/cleaned_figure1_data.csv"), row.names = FALSE)
 ### Draw graph ###
 ggplot(cleaned_figure1_data, aes(
   x = age_cat,
   y = mortality_rate,
-  group = gender, 
-  color = gender)) +
+  group =Gender, 
+  color = Gender)) +
   geom_line()+
   scale_x_discrete(limits = age_cat_order)+
   #label settings
   theme(axis.text.x = element_text(angle = 70, hjust = 1))+
-  labs(y = "Excess Mortality Rate During Pandemic \n(Deaths per 100 persons)", 
+  labs(y = "Excess Mortality Rate During Influenza \n(Deaths per 100 persons)", 
        x = "Age Group")
 ```
 
@@ -141,7 +150,7 @@ cleaned_figure2_data <-
   filter(Sex != "All Sexes")|>
   filter(Age.Group != "All Ages")|>
   filter(State == "United States")
-  
+
 # Remove the wrong age group
 cleaned_figure2_data <- 
   cleaned_figure2_data %>%
@@ -159,7 +168,7 @@ cleaned_figure2_data$Age.Group <-
 cleaned_figure2_data <-
  cleaned_figure2_data |>
   rename(
-    gender = Sex
+    Gender = Sex
   )
 # Store cleaned data
 write.csv(cleaned_figure2_data, file = here::here("Output/Data/cleaned_figure2_data.csv"), row.names = FALSE)
@@ -167,8 +176,8 @@ write.csv(cleaned_figure2_data, file = here::here("Output/Data/cleaned_figure2_d
 ggplot(cleaned_figure2_data, aes(
   x = Age.Group,
   y = COVID.19.Deaths,
-  group = gender, 
-  color = gender)) +
+  group = Gender, 
+  color = Gender)) +
   geom_line() +
   #label settings
   theme(axis.text.x = element_text(angle = 70, hjust = 1))+
@@ -238,7 +247,7 @@ ggplot(cleaned_figure3_data, aes(x = date_label, y = total_influence, group = re
 #| label: fig-4lifeexpectancy
 #############Figure 4 ###########
 ### Clean data ###
-# select only certain columns
+# Select only certain columns
 cleaned_figure4_data <-
   raw_data_fig4 |>
   select(
@@ -248,12 +257,12 @@ cleaned_figure4_data <-
   )
 cleaned_figure4_data <- cleaned_figure4_data %>%
   filter(year >= 1900, year <= 1940)
-# calculate the mean of life expectanacy years
+# Calculate the mean of life expectanacy years
 calculate_mean<- cleaned_figure4_data %>%
   group_by(year) %>%
   summarize(average_life_expectancy = mean(lifeexpectancyyears)) %>%
   ungroup()
-# add lines for calculating average
+# Add lines for calculating average
 add_number <- calculate_mean %>% 
   select(year) %>% 
   n_distinct()
@@ -262,36 +271,36 @@ added_data <- data.frame(
   entity = rep("average", add_number),
   lifeexpectancyyears = numeric(add_number)
 )
-#combine table together
+# Combine table together
 final_figure4_data <- rbind(cleaned_figure4_data, added_data)
-#replaced the average life expectancy years
+# Replaced the average life expectancy years
 final_figure4_data$lifeexpectancyyears[
   final_figure4_data$entity == "average"] <- 
   calculate_mean$average_life_expectancy[
       calculate_mean$year == final_figure4_data$year[
         final_figure4_data$entity == "average"]]
-#store cleaned data for figure 4
+# Store cleaned data for figure 4
 write.csv(final_figure4_data, file = here::here("Output/Data/cleaned_figure4_data.csv"), row.names = FALSE)
-###Draw graph###
-#create a new data set for three highlight lines
+### Draw graph###
+# Create a new data set for three highlight lines
 new_dataset <- 
   final_figure4_data %>% 
   filter(entity %in% c("Italy","Denmark","average"))
 ggplot(final_figure4_data, aes(
-  #make a transparent graph as background
+  # Make a transparent graph as background
   x = year, 
   y = lifeexpectancyyears, 
   color = entity
   )) +
   geom_line(alpha = 0.2) +
-  #make three highlight lines on this graph
+  # Make three highlight lines on this graph
   geom_line(data = new_dataset, aes(
   x = year, 
   y = lifeexpectancyyears, 
   color = entity
   )) +
   theme_minimal() +
-  #highlight the lines we need
+  # Highlight the lines we need
   scale_color_manual(values = c("average" = "red", "Denmark" = "green", "Italy" = "blue"))+
   labs(
     x = "Year",
@@ -305,29 +314,29 @@ ggplot(final_figure4_data, aes(
 #| message: false
 #| warning: false
 #| echo: false
-#| fig-cap: "Stock Market Indices"
+#| fig-cap: "Stock Market Indices by year in London and U.S."
 #| label: fig-5stockmarket
 #########Figure 5###########
 ### Raw data preparation ###
-# add one column to show the stock market
+# Add one column to show the stock market
 raw_data_fig5_1$stock_market <- "London Stock Exchange"
 raw_data_fig5_2$stock_market <- "U.S., Dow−Jones"
-# combine two txt files together
+# Combine two txt files together
 figure5_data <- rbind(raw_data_fig5_1, raw_data_fig5_2)
-# rename the column
+# Rename the column
 colnames(figure5_data) <- c("year", "month", "price","stock_market")
-# rewrite the data
+# Rewrite the data
 figure5_data$month_year <- paste(month.abb[figure5_data$month], figure5_data$year, sep=".")
-# set year range from 1915 to 1924
+# Set year range from 1915 to 1924
 cleaned_figure5_data <- figure5_data %>%
   filter(between(month_year, "Jan.1915", "Jan.1924")) %>%
-  # select what we want
+  # Select what we want
   select(
     price,
     stock_market,
     month_year
   )
-# calculate adjusted index
+# Calculate adjusted index
 index1 <- cleaned_figure5_data[
   cleaned_figure5_data$stock_market == "London Stock Exchange" & cleaned_figure5_data$month_year == "Jan.1915",
   "price"
@@ -340,16 +349,16 @@ index1 <- as.numeric(index1)
 index2 <- as.numeric(index2)
 index_london <- 100/index1
 index_us <- 100/index2
-# convert the column to numeric
+# Convert the column to numeric
 cleaned_figure5_data$price <- as.numeric(cleaned_figure5_data$price)
-# adjusted price
+# Adjusted price
 cleaned_figure5_data$adjusted_price <- ifelse(
   cleaned_figure5_data$stock_market == "London Stock Exchange",
   cleaned_figure5_data$price * index_london,
   ifelse(cleaned_figure5_data$stock_market == "U.S., Dow−Jones",
          cleaned_figure5_data$price * index_us,
          cleaned_figure5_data$price))
-#store cleaned data for figure 5
+# Store cleaned data for figure 5
 write.csv(cleaned_figure5_data, file = here::here("Output/Data/cleaned_figure5_data.csv"), row.names = FALSE)
 ### Draw graph ###
 ggplot(cleaned_figure5_data, aes(x = month_year, y = adjusted_price, group = stock_market, color = stock_market)) +
@@ -403,4 +412,4 @@ One of the biggest weaknesses of our paper is the limited data sets obtained fro
 
 This study can be improved upon by utilizing more data sets to further confirm or modify the claims made in the above sections. Understanding a pandemic does not only include how the virus transmits or how it is constructed biologically. We should also consider the social economical context when developing new policies for COVID-19. Lastly, due to the volatile nature of the virus and its constant mutation, it is best to examine newer papers with more recent data sets when they are available.
 
-{{< pagebreak >}} ## References
+#{{< pagebreak >}} ## References
