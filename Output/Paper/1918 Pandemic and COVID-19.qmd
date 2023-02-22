@@ -7,7 +7,7 @@ abstract: "The Covid-19 pandemic has continued for almost four years now. It has
 format: pdf
 documentclass: article
 geometry: margin = 1in 
-#bibliography: references.bib
+bibliography: references.bib
 ---
 
 ## 1. Introduction
@@ -403,4 +403,4 @@ One of the biggest weaknesses of our paper is the limited data sets obtained fro
 
 This study can be improved upon by utilizing more data sets to further confirm or modify the claims made in the above sections. Understanding a pandemic does not only include how the virus transmits or how it is constructed biologically. We should also consider the social economical context when developing new policies for COVID-19. Lastly, due to the volatile nature of the virus and its constant mutation, it is best to examine newer papers with more recent data sets when they are available.
 
-#{{< pagebreak >}} ## References
+{{< pagebreak >}} ## References
