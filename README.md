@@ -3,7 +3,7 @@ This repository can be found at https://github.com/Faustine123/1918-INFLUENZA-PA
      
 This repo features a reproduction of Brian Beach et al's paper, The 1918 Influenza Pandemic and Its Lessons for COVID-19. You can reach out the orginial paper at https://www.aeaweb.org/articles?id=10.1257/jel.20201641
      
-First run the rscript file, this creates the datasets. Then run the bib file for references and citations, then run the rmd file. Finally, run the reproduction package.
+First run the data cleaning in Script file, this creates the datasets. Then run the bib file for references and citations, then run the qmd file. 
       
 The repository is organised as follows:       
 **The Input folder**          
