@@ -1,0 +1,613 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin = 1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Basing Responses to Covid-19 Pandemic from the 1918 Influenza Data should be Avoided because of Their Massive Differences },
+  pdfauthor={Randall Ni, Myra Li, Faustine Fan},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Basing Responses to Covid-19 Pandemic from the 1918 Influenza
+Data should be Avoided because of Their Massive Differences \footnote{Code
+  and data are available
+  at:https://github.com/Faustine123/1918-INFLUENZA-PANDEMIC-COVID-19.git.
+  The orginial paper can be reached out at
+  https://www.aeaweb.org/articles?id=10.1257/jel.20201641.}}
+\author{Randall Ni, Myra Li, Faustine Fan}
+\date{February 18, 2022}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+The Covid-19 pandemic has continued for almost four years now. It has
+impacted many aspects of our lives, such as personal wellbeing, anxiety
+and depression due to constant lockdowns, and the closing of many small
+businesses. On a country level scale, the pandemic wiped out many aged
+population, stagnated global economy, and forced many countries to
+restrict or close their borders. Beach, Clay, and Saavedra (2022)
+examined the Covid-19 pandemic and compared it to the 1918 Influenza;
+they argued that the two cases are quite similar, and we should be able
+to find out the pattern of the pandemic from the influenza datasets.
+However, they missed the valuable insight that the world is simply not
+like 1918 anymore, and comparing these two pandemics without thinking
+about the social economic setting can lead to dangerous wishful
+thinking. We replicated the result of their paper with respect to
+mortality rate between age groups, articles mentioning the pandemic,
+life expectancy, and world economics. We then investigated whether those
+results are useful, and should be considered when responding to the more
+recent Covid-19 pandemic. Unfortunately, when considering today's social
+economic setting, those older datasets are relatively fruitless and
+misleading; our findings are worth considering in order to implement
+better health and other guidlines.
+\end{abstract}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, enhanced, interior hidden, frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+
+\hypertarget{introduction}{%
+\subsection{1. Introduction}\label{introduction}}
+
+We are still amidst the COVID-19 pandemic, and it has continued to wreak
+havoc on a global scale. The unpreparedness of governments' healthcare
+systems and many nation's less than competent leadership all contributed
+to the rapid spread of this disease. Due to COVID-19 virus strand's
+unique biological similarity to the H1N1 virus that caused the 1918
+Influenza (Spanish Flu), many scholars were trying to use the data
+recorded back then to predict possible futures for the coronavirus
+disease. Furthermore, they were also examining the past data sets in
+order to provide guidance on possible future policies. Beach et. al's
+paper, ``The 1918 Influenza Pandemic and Its Lessons for COVID-19''
+showcases various data sets for the old Influenza and examines the
+similarity between them and COVID-19 data. They have touched on many
+aspects of the influenza, such as mortality, fertility, media coverage,
+and economic growth {[}@beach{]}. Due to the paper's relatively outdated
+publication, our team has determined that many of the authors' opinions
+about COVID-19 are not sufficient, their influenza graphs are relatively
+useless, and other more recent articles should be considered in order to
+determine the best course of action for governments around the world.
+
+Although the Beach et. al's paper examines a wide range of topics, our
+team has determined that only four topics are worth considering in
+today's context: Excess mortality rate/mortality count, media coverage,
+life expectancy, and world economics. In the following paper, we have
+reproduced four graphs for those chosen topics from the replication
+package. Our team will examine the four topics in three stages. Firstly,
+we will have a descriptive analysis of the influenza data. Next, an
+extensive interpretation of the results will be carried out. Lastly, we
+will draw relevant information from related papers to further discuss
+interesting implications and the original data's relevance.
+
+\hypertarget{overview-of-additional-selected-articles}{%
+\subsubsection{1.1 Overview of Additional Selected
+Articles}\label{overview-of-additional-selected-articles}}
+
+Firstly, despite the biological similarity of the H1N1 and COVID-19
+virus, we should gain more insight on the most vulnerable age group
+through more recent data sets. Centers for Disease Control and
+Prevention (CDC)'s mortality count data can provide us with more
+information when comparing to the excess mortality rate data provided by
+Beach et. al's paper. Although the influenza data covers 13 countries
+while CDC's only covers the U.S, we can still see the general pattern
+and apply it on a global scale (CDC XXXX).
+
+Secondly, forms of media have changed drastically since 1918, and they
+can easily be accessed by civilians. Beach et. al gave a brief overview
+of U.S media coverage rate in the 1918, but they did not have any in
+depth analysis; the graph itself does not tell much in terms of the
+effectiveness of media. Therefore, newer COVID-19 data about media
+coverage should be examined as well. Mach et.al examines media reporting
+in the U.S, Canada, and Great Britain and graphed the data in terms of
+scientific value and sensationalism (Mach et. al 2021). By delving
+deeper into their paper, we can understand more about the importance of
+news media in the recent pandemic.
+
+Thirdly, life expectancy has also changed since 1918. People generally
+have more access to medicine and their lives are relatively healthier
+compared to the living conditions in 1918. For that reason, we also need
+newer pandemic data to support the claim that Beach et. al made. They
+argued that life expectancy around the world generally drops when a
+pandemic appears, and Schöley et. al's paper will be used to further
+support their claims with more recent and relevant data (Schöley et.
+al).
+
+Lastly, the world economy also took a huge hit when COVID-19 forced
+countries to close their borders and restricted global trades. Our team
+believes that it is imperative to look at both the macroeconomic changes
+and the stock market changes during COVID-19. Although the replicated
+paper includes data on the 1918 influenza's stock market changes, we
+argue that people should consider the unique effects that COVID-19 has
+on a global economy. Therefore, Mazur et. al's paper will be used to
+analyze the stock market movements during the pandemic, and Barua's
+paper will highlight the impact of COVID-19 on global macroeconomics
+(Mazur et. al 2021)(Barua 2021).
+
+\hypertarget{data}{%
+\subsection{2. Data}\label{data}}
+
+The original paper has more of a literature review style of writing, and
+the authors used various data sets to give a general overview of the
+1918 Influenza and its similarities with COVID-19.
+
+\hypertarget{source}{%
+\subsubsection{2.1 Source}\label{source}}
+
+Our paper will examine different areas of the original paper, and we
+will be using different data sets to achieve our goals. The data that we
+used for graphing purposes is pulled from various sources, and a general
+list can be found below.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Median excess mortality rate in 13 countries is from Murray et. al,
+  ``Estimation of potential global pandemic influenza mortality on the
+  basis of vital registry data from the 1918--20 pandemic: a
+  quantitative analysis.''(2006)
+\item
+  Regional patterns of influenza newspaper coverage data is from the
+  ``Chronicling America'' newspaper archive published by the Library of
+  Congress.
+\item
+  Period life expectancy by year in 14 Countries data originates from
+  ourworldindata.org.
+\item
+  Stock market indices data is from NBER Macrohistory database.
+\end{enumerate}
+
+\hypertarget{methodology}{%
+\subsubsection{2.2 Methodology}\label{methodology}}
+
+This analysis will be performed in R {[}@R{]}, using the dplyr
+{[}@dplyr{]}, readxl {[}@readxl{]}, tidyr {[}@tidyr{]}, data.table
+{[}@table{]}, lubridate {[}@lube{]}, haven {[}@haven{]}, and tidyverse
+{[}@tidy{]} packages. All figures in the report are generated using
+ggplot2 {[}@ggplot{]}.
+
+The collection method of our sources varies. For
+Figure~\ref{fig-2CoivdDeath}, Figure~\ref{fig-3regionalinfluenza},
+Figure~\ref{fig-4lifeexpectancy} mentioned in the sources section above,
+our team believes that they are relatively impartial and objective. For
+source of Figure~\ref{fig-1mortality}, Murray et. al compiled all
+countries with high-quality vital registration data for the 1918-20
+pandemic and used these data to calculate excess mortality. This might
+cause certain biases and make the data inaccurate when applying it
+globally. For example, proper data collection just began in 1918, and
+only countries that have the resources to properly record the data are
+chosen. It is reasonable to argue that they are already developed
+nations, and only including them means that the data is not representing
+other affected developing nations at the time.
+
+\hypertarget{results}{%
+\subsection{3. Results}\label{results}}
+
+Excess mortality rate is the rate of deaths from all causes during a
+crisis (in this case, the pandemic) above and beyond what we would have
+expected to see under ``normal'' conditions. It is imperative to
+understand which group is the most vulnerable, since that information
+can aid our healthcare system to mitigate the impact. In figure 1 below,
+we have compared the mortality rate with age groups and gender during
+the 1918 Influenza. There is a clear spike of excess death rate for male
+and female populations in the 25 to 29 age group. In addition, the H1N1
+virus seems to be most effective at killing young adults and the middle
+age population from 15 to 39. Furthermore, males have a higher chance of
+death overall when compared to females during the influenza in those 13
+recorded countries.
+
+\begin{figure}
+
+{\centering \includegraphics{1918-Pandemic-and-COVID-19_files/figure-pdf/fig-1mortality-1.pdf}
+
+}
+
+\caption{\label{fig-1mortality}Median Excess Mortality Rate by Age and
+Sex in 13 Countries}
+
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{1918-Pandemic-and-COVID-19_files/figure-pdf/fig-2CoivdDeath-1.pdf}
+
+}
+
+\caption{\label{fig-2CoivdDeath}Covid-19 Death by Age in United States}
+
+\end{figure}
+
+We have produced Figure~\ref{fig-2CoivdDeath} below using the mortality
+data set form CDC in order to compare it with the influenza data from
+the original paper. Although the CDC data set only includes data
+collected from the U.S healthcare system, we believe that the mortality
+trend does apply well globally (CDC XXXX). There is a clear uptrend in
+mortality when the population is in the older age groups. Furthermore,
+the most at risk male population is the 75 to 84 age group, while the
+most at risk female population is the 85 years and older age group. In
+addition, males are also more likely to die from coronavirus than
+females. On the other hand, coronavirus barely affects the younger
+population, and we do not see the spike in mortality between teenager to
+middle age groups like the influenza data.
+
+Figure~\ref{fig-3regionalinfluenza} below showcases a general overview
+of U.S media coverage about the influenza separated by areas. We can see
+that there is a clear spike in article mentions for all four areas
+during 1918 and it gradually decreases over the years. In addition, out
+of the considered areas, Southern states and Midwestern states mention
+the most about the influenza. The authors of the original paper did not
+do much analysis on the effect of media during a pandemic, since the U.S
+did not get affected too much by the H1N1 virus and the data only
+applies to the different states. Our team will be using Mach et. al's
+paper to supplement our understanding of the role of media in the
+discussion section, since their paper does a more systematic and
+detailed analysis.
+
+\begin{figure}
+
+{\centering \includegraphics{1918-Pandemic-and-COVID-19_files/figure-pdf/fig-3regionalinfluenza-1.pdf}
+
+}
+
+\caption{\label{fig-3regionalinfluenza}Regional Patterns of Influenza
+Newspaper Coverage}
+
+\end{figure}
+
+Figure~\ref{fig-4lifeexpectancy} highlights the life expectancy changes
+before, during, and after the 1918 Influenza. Three main elements have
+been highlighted with different colours in the graph: Denmark (least
+affected), world average, and Italy (most affected). We can see a
+general uptick trend in this graph, and there are clear troughs around
+1918. This means that the overwhelming majority of the countries
+included in this graph experienced decreased life expectancy during the
+Influenza era.
+
+\begin{figure}
+
+{\centering \includegraphics{1918-Pandemic-and-COVID-19_files/figure-pdf/fig-4lifeexpectancy-1.pdf}
+
+}
+
+\caption{\label{fig-4lifeexpectancy}Period Life Expectancy by Year in 14
+Countries}
+
+\end{figure}
+
+Figure~\ref{fig-5stockmarket} reveals stock market patterns during the
+Influenza separated by either the U.S or London stock exchange. Although
+this is not an exact reproduction of the original paper, we can still
+spot the overall trend. There is no clear pattern shown, and both stock
+markets seem to oscillate. They seemed to be relatively unaffected
+during the Influenza and did not show drastic increase or decrease in
+prices. In addition, both stock market prices gradually increased over
+the years and all ended up with a higher price in 1924 (which is the end
+of the chart) than in 1915.
+
+\begin{figure}
+
+{\centering \includegraphics{1918-Pandemic-and-COVID-19_files/figure-pdf/fig-5stockmarket-1.pdf}
+
+}
+
+\caption{\label{fig-5stockmarket}Stock Market Indices}
+
+\end{figure}
+
+\hypertarget{discussion}{%
+\subsection{4. Discussion}\label{discussion}}
+
+\hypertarget{influenza-and-covid-19-affects-different-age-groups}{%
+\subsubsection{4.1 1918 Influenza and COVID-19 Affects Different Age
+Groups}\label{influenza-and-covid-19-affects-different-age-groups}}
+
+We can clearly see that the Influenza and COVID-19 affects vastly
+different age groups in the above
+section(Figure~\ref{fig-1mortality})(Figure~\ref{fig-2CoivdDeath}).
+Influenza has a higher lethality amongst the working population, while
+older people are more likely to die from COVID-19 (CDC XXXX). Although
+it is scientifically proven that those two viruses are very similar in
+potential symptoms and biological structure, we shouldn't prepare our
+hospitals in the same way as when we are combating the influenza; they
+should be modified and expected to receive a large percentage of older
+patients. In addition, future policies and social benefits should
+prioritize the older generations, since they get affected the most and
+are more at risk than other age groups. Furthermore, it is especially
+important to prevent or minimize virus transmission to older
+generations, since they already have a weaker immune system and the
+virus is more effective on them.
+
+\hypertarget{importance-of-media-coverage}{%
+\subsubsection{4.2 Importance of Media
+Coverage}\label{importance-of-media-coverage}}
+
+Media coverage is an essential element for staying informed and
+preventing the rapid spread of pandemics. Despite the original paper's
+authors not delving deeper with the Influenza data
+(Figure~\ref{fig-3regionalinfluenza}), our team used Mach et. al's paper
+to gain further understanding of the power of media during a pandemic.
+Mach et. al have a more detailed method of calculating the effectiveness
+of media coverage. They only examined traditional news outlets in three
+countries (Canada, U.S, and UK), and they separated the data into
+``scientific quality score'' and ``sensationalism score''. These
+categorizations are very effective, since having high scientific quality
+scores means that the information is accurate and having low
+sensationalism scores means that the source did not sacrifice too much
+factual information to ``grab eyeballs''.
+
+The authors uncover that newspaper reports have varying degrees of
+scientific quality. They generally have a moderate score on scientific
+quality, while the right leaning media platforms of each country have
+significantly lower score (Mach et. al xxxx). The score is extremely low
+for validity, precision, context, and the distinction between opinion
+versus facts in some cases. The various differences in quality suggest
+that readers from Canada, U.S, and UK will obtain varying degrees of
+scientific quality when they read different news outlets. Overall,
+Canada, does on average, has better scores in this category compared to
+the other two countries; it is reasonable to argue that the higher
+scientific quality score contributed to their lower COVID-19 cases and
+death counts (Mach et. al xxxx).
+
+Another category examined by Mach et. al is sensationalism. While low
+sensationalism often correlates with more factual information, it also
+means that readers might be uninterested in reading the articles.
+Sensationalism scores are low overall across all news outlets, and the
+authors suggest that ideology affiliation might influence how media use
+information. They highlight that populist-right leaning media is more
+likely to include governments' interpretation of the science and
+implemented policies in their articles (Mach et. al XXXX).
+
+Overall, new media plays an essential role in providing information for
+the public, explaining government actions, and guiding public
+perceptions of the pandemic. Through Mach et. al's paper, we can clearly
+see that higher scientific quality should be strongly encouraged in news
+outlets. It is also reasonable to increase the sensationalism to a
+certain degree without infringing the factual correctness. After all,
+the news article should be eye-catching enough to grab the attention of
+the readers and provide them with the most up-to-date facts to stay
+informed about the pandemic.
+
+\hypertarget{life-expectancy-changes}{%
+\subsubsection{4.3 Life Expectancy
+Changes}\label{life-expectancy-changes}}
+
+Life expectancy is a measure of current population health, and it has an
+inverse relationship with mortality. Beach et. al examined the Influenza
+data in the original paper, and they argue that COVID-19 should make the
+affected countries have similar dips during the pandemic and bounce back
+years after {[}@beach{]}. We examined Schöley et. al's paper to obtain
+newer data for COVID-19, and we highlight that COVID-19 does have a
+similar effect on life expectancy around the world (Schöley et. al).
+
+Schöley et. al uncover that the pandemic has already induced a mortality
+shock in the majority of European countries and the U.S by 2021, and
+even some of the best performing countries are struggling to keep up
+with their pre-pandemic projections. France, Sweden, Belgium, and
+Switzerland managed to recover from their losses in 2020 and restored
+their life expectancy back to 2019 level. Interestingly, the
+Scandinavian countries (Finland, Norway, and Denmark) also managed to
+maintain their life expectancy at a pre-pandemic level. Schöley et. al
+argue that this phenomenon is caused due to them delivering vaccines
+faster on average, introducing various effective non-pharmaceutical
+public health interventions, and their effective health care systems.
+
+\hypertarget{macroeconomic-impact-and-the-march-2020-stock-market-crash}{%
+\subsubsection{4.4 Macroeconomic impact and the March 2020 Stock Market
+Crash}\label{macroeconomic-impact-and-the-march-2020-stock-market-crash}}
+
+Beach et. al provided us with the stock market data during the Influenza
+era, but the world is simply not the same anymore. Globalization and the
+ease of transportation makes certain countries heavily depend on each
+other for materials. The world economy stagnates when COVID-19 forces
+governments to restrict borders, introduce lock down measures, and have
+tighter controls on imported and exported goods. By examining the
+macroeconomics and the stock market, we can have a deeper understanding
+of the unprecedented effects of COVID-19.
+
+Barua developed a potential timeline for a country's economy based on
+Chinese data. He argues that we should consider both short and long term
+effects of COVID-19. To begin with, countries will experience distortion
+in supply chains, interruption of human workers, and demand/supply shock
+in the short term. Next, distortion in trade will lead to changes in
+essential goods demand/supply, loss of employment, and rise in financial
+instability. Lastly, countries will experience reduced economic growth
+and a possible recession in the long term (Barua xxxx). This timeline
+urges governments to reduce the negative effects with fiscal and
+monetary policies. Furthermore, this timeline is supported by anecdotal
+evidence and Mazur et. al's paper on the stock market evaluation.
+
+Mazur et. al investigated the US stock market performance during the
+crash of March 2020 triggered by COVID-19, and they concluded that
+healthcare, food, tech, and natural gas stocks earned high positive
+returns, while value in real estate, entertainment, hospitality, and
+petroleum decreased dramatically (Mazur et. al xxxx). This discovery
+coincides with Barua's claims. Essential goods demand such as healthcare
+and food sees rise in value, while non-essential goods such as
+entertainment suffers heavy losses. The stock market crash in March 2020
+also preludes to the possible repossession claim made by Barua.
+
+Overall, although Mazur et. al only examined the U.S stock exchange, it
+is considered the most influential stock market and can easily send
+ripples of its effect towards other stock exchanges. Therefore, it is
+imperative that governments should help the economy to prevent it from
+going into a recession and introduce new policies to rebuild it back to
+pre-pandemic levels.
+
+\hypertarget{potential-bias}{%
+\subsubsection{4.5 Potential Bias}\label{potential-bias}}
+
+Apart from the possible bias introduced in the methodology section,
+there are various biases in our sources. To begin with, the data on the
+Influenza has various competing factors that we can not account for. For
+example, the excess mortality rate graph includes death count from every
+cause. World War I, different illness, and poor living conditions all
+contributed to the death of young people during that era. Next, the
+scope of the data we used to examine the importance of media coverage is
+extremely narrow. It only investigates traditional media (news) for
+three countries, and misses out on covering various social media
+platforms. This data might be biased towards older generations, since
+younger cultures obtain most of their information through those
+platforms instead of traditional news. Lastly, the paper we used to
+examine stock performances during a pandemic focused heavily on the U.S
+stock market. While it is true that it can be considered the most
+influential stock market in the world, it can be more informative if we
+also get to investigate the impact of COVID-19 on other lesser stock
+markets such as the Hong Kong stock exchange (HKEX).
+
+\hypertarget{weakness-of-our-paper}{%
+\subsubsection{4.6 Weakness of our Paper}\label{weakness-of-our-paper}}
+
+One of the biggest weaknesses of our paper is the limited data sets
+obtained from the original paper. During our replications, we discovered
+that most of the data sets have been cleaned and already filtered to
+answer certain questions. This makes it extremely hard to manipulate the
+data sets in other ways to gain more insights and ask more questions.
+Furthermore, due to the ongoing nature of COVID-19, new data sets are
+constantly developed. Therefore, newer data can completely render our
+analysis obsolete or challenge certain arguments made in this paper.
+
+\hypertarget{possible-next-steps}{%
+\subsubsection{4.7 Possible Next Steps}\label{possible-next-steps}}
+
+This study can be improved upon by utilizing more data sets to further
+confirm or modify the claims made in the above sections. Understanding a
+pandemic does not only include how the virus transmits or how it is
+constructed biologically. We should also consider the social economical
+context when developing new policies for COVID-19. Lastly, due to the
+volatile nature of the virus and its constant mutation, it is best to
+examine newer papers with more recent data sets when they are available.
+
+\#\newpage{} \#\# References
+
+
+
+\end{document}
