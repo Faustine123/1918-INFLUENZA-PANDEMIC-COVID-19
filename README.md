@@ -7,7 +7,7 @@ First run the rscript file, this creates the datasets. Then run the bib file for
       
 The repository is organised as follows:       
 **The Input folder**          
-All raw data are stored under Input/Data, These data come from the replication package of the Brian Beach et al's paper. And we only put the data we used in this file, and we rename these file.               
+All raw data are stored under Input/Data, These data come from the replication package of the Brian Beach et al's paper. And we only put the data we used in this file, and we rename these files.               
 Fig1_raw_data original file name: Murray_2006_Estimates.xlsx                
 Fig3_raw_data original file name: LOC_Newspapers_Sep18_Dec19.dta           
 Fig4_raw_data original file name: Life_Expectancy.dta          
