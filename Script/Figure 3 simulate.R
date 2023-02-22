@@ -1,3 +1,9 @@
+#### Preamble ####
+# Purpose: Simulates the figure 3 (Regional Patterns of Influenza Newspaper Coverage) raw data
+# Author: Randall Ni, Myra Li, Faustine Fan
+# Data: 22 February 2023
+# Contact: myra.li@mail.utoronto.ca
+
 library(janitor)
 library(tibble)
 library(tidyverse)
