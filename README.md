@@ -7,7 +7,12 @@ First run the rscript file, this creates the datasets. Then run the bib file for
       
 The repository is organised as follows:       
 **The Input folder**          
-All raw data are stored under Input/Data, These data come from the replication package of the Brian Beach et al's paper. And we only put the data we used in this file.          
+All raw data are stored under Input/Data, These data come from the replication package of the Brian Beach et al's paper. And we only put the data we used in this file, and we rename these file.               
+Fig1_raw_data original file name: Murray_2006_Estimates.xlsx                
+Fig3_raw_data original file name: LOC_Newspapers_Sep18_Dec19.dta           
+Fig4_raw_data original file name: Life_Expectancy.dta          
+Fig5_raw_data original file name: NBER_Stocks          
+        
 For fig 2, the data comes from https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku.           
   
 Note: the raw data for fig4 is dat file, and we manually convert it to txt file and stored in Output/Data/processed_figure4_data. Since we convert the file format, we consider it as processed data.          
