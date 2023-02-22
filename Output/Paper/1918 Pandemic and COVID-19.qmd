@@ -1,5 +1,5 @@
 ---
-title: "Basing Responses to Covid-19 Pandemic from the 1918 Influenza Data should be Avoided because of Their Massive  Differences ^[Code and data are available at:https://github.com/Faustine123/1918-INFLUENZA-PANDEMIC-COVID-19.git. The orginial paper can be reached out at https://www.aeaweb.org/articles?id=10.1257/jel.20201641.]"
+title: "Basing Responses to Covid-19 Pandemic from the 1918 Influenza Data should be Avoided because of Their Massive  Differences ^[Code and data are available at:https://github.com/Faustine123/1918-INFLUENZA-PANDEMIC-COVID-19.git and https://www.socialsciencereproduction.org/reproductions/1020/index?step=0]"
 author: "Randall Ni, Myra Li, Faustine Fan"
 date: "18 Feburary 2022"
 date-format: long
@@ -95,8 +95,12 @@ ggplot(cleaned_figure1_data, aes(
 #| label: fig-2CoivdDeath
 #| fig-cap: "Covid-19 Death by Age in United States"
 
-
 ### Draw graph ###
+# Make sure the order of the age group is the order we wanted
+age_reorder <- c("Under 1 year", "1-4 years", "5-14 years", "15-24 years", "25-34 years", "35-44 years", "45-54 years", "55-64 years", "65-74 years", "75-84 years", "85 years and over")
+cleaned_figure2_data$Age.Group <- 
+  factor(cleaned_figure2_data$Age.Group, 
+         levels = age_reorder)
 ggplot(cleaned_figure2_data, aes(
   x = Age.Group,
   y = COVID.19.Deaths,
@@ -118,6 +122,12 @@ We have produced @fig-2CoivdDeath below using the mortality data set form CDC in
 #| echo: false
 #| fig-cap: "Regional Patterns of Influenza Newspaper Coverage"
 #| label: fig-3regionalinfluenza
+
+# Make sure the order of the age group is the order we wanted
+date_label <- c("Sep.1918", "Oct.1918", "Nov.1918", "Dec.1918", "Jan.1919", "Feb.1919", "Mar.1919", "Apr.1919", "May.1919", "Jun.1919", "Jul.1919", "Aug.1919", "Sep.1919", "Oct.1919", "Nov.1919","Dec.1919")
+cleaned_figure3_data$date_label <- 
+  factor(cleaned_figure3_data$date_label, 
+         levels = date_label)
 
 ### Draw graph ###
 ggplot(cleaned_figure3_data, aes(x = date_label, y = total_influence, group = region, color = region)) +
